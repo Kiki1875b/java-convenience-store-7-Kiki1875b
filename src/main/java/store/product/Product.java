@@ -52,6 +52,7 @@ public class Product {
 
     public void setOrdinaryCount(int count){
         ordinaryCount = count;
+        type = NULL;
     }
 
     public void checkIfEnoughInStock(int count) {
