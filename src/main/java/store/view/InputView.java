@@ -5,16 +5,14 @@ import store.constants.ViewConstants;
 import java.util.List;
 
 import static store.constants.UtilContants.END_LINE_SINGLE;
-import static store.constants.ViewConstants.START_MESSAGE;
-import static store.constants.ViewConstants.REQUEST_INPUT_MESSAGE;
-import static store.constants.ViewConstants.ASK_MEMBERSHIP_DISCOUNT;
-import static store.constants.ViewConstants.ASK_REPURCHASE;
-import static store.constants.ViewConstants.ASK_PROMOTION_NOT_APPLIES;
+import static store.constants.ViewConstants.*;
 
 public class InputView {
 
     public void printStart() {
         System.out.print(START_MESSAGE.getMessage());
+        printEndLine();
+        System.out.print(START_SECOND_MESSAGE.getMessage());
         printEndLine();
     }
 
@@ -59,6 +57,4 @@ public class InputView {
         printEndLine();
         return Console.readLine();
     }
-
-
 }
