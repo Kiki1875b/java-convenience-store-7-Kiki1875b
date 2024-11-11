@@ -121,10 +121,16 @@ public class Parser {
     static public HashMap<String, Integer> parseUserInput(String input) {
         HashMap<String, Integer> returnMap = new LinkedHashMap<>();
         List<String> items = splitInput(input, SEPARATOR);
+
         for (String item : items) {
             item = replaceBracket(item);
             List<String> parts = splitInput(item, SEPARATOR_DASH);
-            returnMap.put(parts.getFirst(), Integer.parseInt(parts.getLast()));
+            if(!returnMap.containsKey(parts.getFirst())) {
+                returnMap.put(parts.getFirst(), Integer.parseInt(parts.getLast()));
+            }else if(returnMap.containsKey(parts.getFirst())){
+                int num = returnMap.get(parts.getFirst());
+                returnMap.put(parts.getFirst(),  num + Integer.parseInt(parts.getLast()));
+            }
         }
         return returnMap;
     }

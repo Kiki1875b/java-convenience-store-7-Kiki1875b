@@ -40,6 +40,14 @@ class ApplicationTest extends NsTest {
     @Test
     void 여러_개의_일반_상품_구매() {
         assertSimpleTest(() -> {
+            run("[콜라-2]", "N", "N", "N");
+            assertThat(output().replaceAll("\\s", "")).contains("내실돈2,000");
+        });
+    }
+
+    @Test
+    void 여a러_개의_일반_상품_구매() {
+        assertSimpleTest(() -> {
             run("[비타민워터-3],[물-2],[정식도시락-2]", "N", "N");
             assertThat(output().replaceAll("\\s", "")).contains("내실돈18,300");
         });
