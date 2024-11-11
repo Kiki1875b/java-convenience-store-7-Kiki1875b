@@ -57,13 +57,11 @@ public class Product {
             return false;
         }
         if(promotionCount - count - get <= ZERO){
-
             return false;
         }
         if (count % (buy + get) == buy) {
             return true;
         }
-
         return false;
     }
 
@@ -110,15 +108,12 @@ public class Product {
             promotionCount -= count;
             return;
         }
-
         count -= promotionCount;
         promotionCount = 0;
         if (ordinaryCount >= count) {
             ordinaryCount -= count;
             return;
         }
-
-        throw new IllegalArgumentException(EXCEEDED_STOCK_QUANTITY.getMessage());
     }
 
     public void hasEnoughPromotionStock(int count) {

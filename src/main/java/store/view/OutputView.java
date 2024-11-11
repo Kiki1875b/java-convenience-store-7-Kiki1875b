@@ -22,8 +22,10 @@ public class OutputView {
     }
 
     public static void printResultFirstPart() {
-        System.out.println(END_LINE_SINGLE + RESULT_START.getMessage());
-        System.out.println(RESULT_FIRST_PART.getMessage());
+        System.out.print(END_LINE_SINGLE + RESULT_START.getMessage());
+        printEndLine();
+        System.out.print(RESULT_FIRST_PART.getMessage());
+        printEndLine();
     }
 
     public static void printResultFirstPartSpecific(List<String> singleResult) {
@@ -34,26 +36,38 @@ public class OutputView {
             return;
         }
         String money = singleResult.get(THIRD);
-        System.out.println(RESULT_PRODUCT_COUNT_PRICE.format(price, count, money));
+        System.out.print(RESULT_PRODUCT_COUNT_PRICE.format(price, count, money));
+        printEndLine();
     }
 
     public static void printSecondPart() {
-        System.out.println(RESULT_SECOND.getMessage());
+        System.out.print(RESULT_SECOND.getMessage());
+        printEndLine();
     }
 
     public static void printSecondPartSpecific(String item, String count) {
-        System.out.println(RESULT_SECOND_SPECIFIC.format(item, count));
+        System.out.print(RESULT_SECOND_SPECIFIC.format(item, count));
+        printEndLine();
     }
 
     public static void printThirdPart() {
-        System.out.println(RESULT_THIRD.getMessage());
+        System.out.print(RESULT_THIRD.getMessage());
+        printEndLine();
     }
 
     public static void printThirdPartSpecific(String count, String total, String promotion, String membership, String toPay) {
-        System.out.println(RESULT_TOTAL.format(count, total));
-        System.out.println(RESULT_PROMOTION_DISCOUNT.format(promotion));
-        System.out.println(RESULT_MEMBERSHIP_DISCOUNT.format(membership));
-        System.out.println(RESULT_MONEY_TO_PAY.format(toPay));
+        System.out.print(RESULT_TOTAL.format(count, total));
+        printEndLine();
+        System.out.print(RESULT_PROMOTION_DISCOUNT.format(promotion));
+        printEndLine();
+        System.out.print(RESULT_MEMBERSHIP_DISCOUNT.format(membership));
+        printEndLine();
+        System.out.print(RESULT_MONEY_TO_PAY.format(toPay));
+        printEndLine();
 
+    }
+
+    public static void printEndLine(){
+        System.out.print(END_LINE_SINGLE);
     }
 }
