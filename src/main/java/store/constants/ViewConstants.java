@@ -13,7 +13,7 @@ public enum ViewConstants {
     RESULT_FIRST_PART("상품명\t\t수량\t금액"),
     RESULT_PRODUCT_COUNT_PRICE("%s\t\t%s\t%s"),
     RESULT_SECOND("=============증\t정==============="),
-    RESULT_SECOND_SPECIFIC("%s\t\t\t%s"),
+    RESULT_SECOND_SPECIFIC("%s\t\t%s"),
     RESULT_THIRD("===================================="),
     RESULT_TOTAL("총구매액\t\t%s\t%s"),
     RESULT_PROMOTION_DISCOUNT("행사할인\t\t\t-%s"),
