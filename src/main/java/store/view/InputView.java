@@ -14,6 +14,7 @@ public class InputView {
         printEndLine();
         System.out.print(START_SECOND_MESSAGE.getMessage());
         printEndLine();
+        printEndLine();
     }
 
     public void printStock(List<String> stocks) {
@@ -21,6 +22,7 @@ public class InputView {
             System.out.print("- " + stock);
             printEndLine();
         }
+
     }
 
     public void printEndLine(){

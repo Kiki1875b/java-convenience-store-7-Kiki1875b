@@ -45,6 +45,7 @@ public class StoreController {
         printResultSecondPart();
         printResultThirdPart();
         printAskRepurchase();
+
     }
 
     private void ifIsFirst() {
@@ -91,7 +92,6 @@ public class StoreController {
         for(String name : productRepository.getProducts().keySet()){
             Product product = productRepository.getItemByKey(name);
             if(product.getOrdinaryCount() > 0 || product.getPromotionCount() > 0){
-
                 return false;
             }
         }
