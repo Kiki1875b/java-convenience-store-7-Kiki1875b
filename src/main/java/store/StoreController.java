@@ -61,16 +61,18 @@ public class StoreController {
     }
 
     private void printAskRepurchase() {
-        boolean validInput = false;
-        while (!validInput) {
-            try {
-                String userInput = inputView.printAskRepurchase();
-                inputView.printEndLine();
-                InputValidator.validateSimpleAnswer(userInput);
-                handleRepurchase(userInput);
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                OutputView.printError(e.getMessage());
+        if(!isAllEmpty()) {
+            boolean validInput = false;
+            while (!validInput) {
+                try {
+                    String userInput = inputView.printAskRepurchase();
+                    inputView.printEndLine();
+                    InputValidator.validateSimpleAnswer(userInput);
+                    handleRepurchase(userInput);
+                    validInput = true;
+                } catch (IllegalArgumentException e) {
+                    OutputView.printError(e.getMessage());
+                }
             }
         }
     }
@@ -80,7 +82,21 @@ public class StoreController {
             return;
         }
         isFirst = false;
+
         restart();
+
+    }
+
+    private boolean isAllEmpty(){
+        for(String name : productRepository.getProducts().keySet()){
+            Product product = productRepository.getItemByKey(name);
+            if(product.getOrdinaryCount() > 0 || product.getPromotionCount() > 0){
+
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void restart() {
@@ -217,6 +233,11 @@ public class StoreController {
         if (!promotionRepository.promotionExists(product.getType())) {
             return;
         }
+
+        if(product.getPromotionCount() == 0){
+            return;
+        }
+
         Promotion promotion = promotionRepository.getPromotionByKey(product.getType());
         int numberOfProductsUnableToGetPromotion = product.unableToGetPromotion(userOrder.get(key), promotion.getBuyCount(), promotion.getGetCount());
         if (numberOfProductsUnableToGetPromotion == ZERO) {
