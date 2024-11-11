@@ -1,6 +1,7 @@
 package store.promotion;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
@@ -14,15 +15,15 @@ public class PromotionRepository {
     public void addPromotion(Promotion promotion, ProductRepository productRepository) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate startDate = LocalDate.parse(promotion.getStartDate(), formatter);
-        LocalDate endDate = LocalDate.parse(promotion.getEndDate(), formatter);
+        LocalDateTime startDate = LocalDate.parse(promotion.getStartDate(), formatter).atStartOfDay();
+        LocalDateTime endDate = LocalDate.parse(promotion.getEndDate(), formatter).atStartOfDay();
 
 
         if (endDate.isBefore(startDate)) {
             throw new IllegalArgumentException("[ERROR] 프로모션 종료일이 시작일보다 빠를 수 없습니다.");
         }
 
-        LocalDate currentDate = DateTimes.now().toLocalDate();
+        LocalDateTime currentDate = LocalDate.of(DateTimes.now().getYear(), DateTimes.now().getMonth(), DateTimes.now().getDayOfMonth()).atStartOfDay();
         if (!currentDate.isBefore(startDate) && !currentDate.isAfter(endDate)) {
             promotions.put(promotion.getPromotionName(), promotion);
         }else{
