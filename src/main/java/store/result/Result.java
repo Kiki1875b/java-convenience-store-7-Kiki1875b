@@ -63,7 +63,7 @@ public class Result {
     public void updateBoughtProducts(String productName, int count) {
         totalCount += count;
         Product product = productRepository.getItemByKey(productName);
-        if (product.getType().equals(NULL)) {
+        if (product.getType().equals(NULL) || product.getPromotionCount() == 0) {
             nonPromotionTotal += (product.getPrice() * count);
         }
         boughtProducts.put(productName, count);

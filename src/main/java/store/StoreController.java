@@ -50,7 +50,7 @@ public class StoreController {
 
     private void ifIsFirst() {
         if (isFirst) {
-            initPromotionRepository();
+
             printStartAndStock();
             return;
         }
@@ -163,7 +163,8 @@ public class StoreController {
     private void printStartAndStock() {
         List<String> products = readProducts();
         initProductRepository(products);
-        List<String> parsedProducts = Parser.parseToOutput(products);
+        initPromotionRepository();
+        List<String> parsedProducts = Parser.parseToOutput(productRepository);
         inputView.printStart();
         inputView.printStock(parsedProducts);
         inputView.printEndLine();
@@ -177,7 +178,7 @@ public class StoreController {
                 continue;
             }
             Promotion promotion1 = new Promotion(List.of(promotion.split(SEPARATOR)));
-            promotionRepository.addPromotion(promotion1);
+            promotionRepository.addPromotion(promotion1, productRepository);
         }
     }
     private static boolean isNumeric(String str) {

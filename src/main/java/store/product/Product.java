@@ -46,6 +46,14 @@ public class Product {
         }
     }
 
+    public void setPromotionCount(int count){
+        promotionCount = count;
+    }
+
+    public void setOrdinaryCount(int count){
+        ordinaryCount = count;
+    }
+
     public void checkIfEnoughInStock(int count) {
         if (ordinaryCount + promotionCount < count) {
             throw new IllegalArgumentException(EXCEEDED_STOCK_QUANTITY.getMessage());

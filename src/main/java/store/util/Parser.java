@@ -40,8 +40,10 @@ public class Parser {
     static public List<String> parseToOutput(ProductRepository productRepository) {
         List<String> parsedProducts = new ArrayList<>();
         for (Product product : productRepository.getProducts().values()) {
+
             String name = product.getName();
-            String price = parseMoney(product.getPrice());
+            int count = countElement(productRepository,name);
+            String price = parseMoney(product.getPrice()) + MONEY_UNIT;
             String ordinaryCount = getCount(product.getOrdinaryCount());
             String promotionCount = getCount(product.getPromotionCount());
             String type = product.getType();
@@ -88,6 +90,11 @@ public class Parser {
         return (int) products.stream()
             .filter(product -> product.contains(name))
             .count();
+    }
+
+    private static int countElement(ProductRepository productRepository, String name){
+        return (int) productRepository.getProducts()
+            .keySet().stream().filter(product -> product.contains(name)).count();
     }
 
     static private String parseSingleLine(List<String> tokens) {
