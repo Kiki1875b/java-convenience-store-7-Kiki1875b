@@ -21,7 +21,7 @@ public class FileReader {
         try {
             return Files.readString(filePath);
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
