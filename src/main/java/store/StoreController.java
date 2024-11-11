@@ -155,13 +155,17 @@ public class StoreController {
 
     private void initPromotionRepository() {
         List<String> promotions = readPromotions();
+
         for (String promotion : promotions) {
-            if (promotion.startsWith("name")) {
+            if (!isNumeric(promotion.split(SEPARATOR)[1])) {
                 continue;
             }
             Promotion promotion1 = new Promotion(List.of(promotion.split(SEPARATOR)));
             promotionRepository.addPromotion(promotion1);
         }
+    }
+    private static boolean isNumeric(String str) {
+        return str != null && str.matches("\\d+");
     }
 
     private void initProductRepository(List<String> products) {

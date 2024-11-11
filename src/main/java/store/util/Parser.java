@@ -62,10 +62,14 @@ public class Parser {
         return parseMoney(count) + UNIT;
     }
 
+    private static boolean isNumeric(String str) {
+        return str != null && str.matches("\\d+");
+    }
     static public List<String> parseToOutput(List<String> products) {
         List<String> parsedProducts = new ArrayList<>();
+
         for (String product : products) {
-            if (product.startsWith("name")) {
+            if (!isNumeric(product.split(SEPARATOR)[1])) {
                 continue;
             }
             List<String> tokens = List.of(product.split(SEPARATOR));
