@@ -6,8 +6,7 @@ import store.product.ProductRepository;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import static store.constants.UtilContants.MEMBERSHIP_DISCOUNT_LIMIT;
-import static store.constants.UtilContants.NULL;
+import static store.constants.UtilContants.*;
 
 public class Result {
     private HashMap<String, Integer> boughtProducts = new LinkedHashMap<>();
@@ -74,6 +73,13 @@ public class Result {
         totalCount -= count;
         Product product = productRepository.getItemByKey(productName);
         boughtProducts.put(productName, boughtProducts.get(productName) - count);
+        if(boughtProducts.get(productName) == ZERO){
+            boughtProducts.remove(productName);
+        }
+    }
+
+    public int getBoughtProductSize(){
+        return boughtProducts.size();
     }
 
     public void updatePromotions(String product, int count) {

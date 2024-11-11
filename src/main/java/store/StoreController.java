@@ -242,6 +242,9 @@ public class StoreController {
             userOrder.put(key, userOrder.get(key) - number);
             result.decreaseBoughtProducts(key, number);
             result.updatePromotions(key, (userOrder.get(key) / (promotion.getBuyCount() + promotion.getGetCount()) * promotion.getGetCount()));
+            if(result.getBoughtProductSize() == ZERO){
+                printAskRepurchase();
+            }
             return;
         }
         Promotion promotion = promotionRepository.getPromotionByKey(productRepository.getItemByKey(key).getType());
